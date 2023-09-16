@@ -1,10 +1,24 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import { Context } from "../store/appContext";
 
 export const Signup = ()=>{
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [pwd, setPwd] = useState()
     const [pwd2, setPwd2] = useState()
+    const {actions} = useContext(Context)
+
+    const signupClick = async () => {
+        const new_user = {
+            "name": name,
+            "email": email,
+            "password": pwd
+        }
+        const resp = await actions.signup(new_user)
+        if(resp){
+            alert(`${resp.message}`)
+        }
+    }
     return (
         <div className="container d-flex justify-content-center mt-4">
         <div className="col-3 border rounded p-3">
@@ -28,7 +42,7 @@ export const Signup = ()=>{
                 <input onChange={(e)=>{setPwd2(e.target.value)}} type="password" class="form-control" aria-label="Password" aria-describedby="basic-addon1" placeholder="Enter password again"/>
             </div>
             <div class="input-group mb-3 justify-content-center">
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button onClick={signupClick} type="button" class="btn btn-primary" >Submit</button>
             </div>
             <div class="input-group mb-3 justify-content-center">
                 <p>{`${name}`}</p><br/>

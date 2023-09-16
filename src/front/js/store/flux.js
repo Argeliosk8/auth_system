@@ -21,6 +21,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 
+			signup: async(new_user)=>{
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + "/api/signup", {
+						method: "POST",
+						headers: {"Content-Type": "application/json"},
+						body: JSON.stringify(new_user)
+					})
+					if(!resp.ok) throw Error('There was a problem with your registration')
+					const data = await resp.json()
+					return data
+
+				} catch (error) {
+					console.error.log(error)
+				}
+			},
+
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
