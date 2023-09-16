@@ -13,7 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			user: null
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -33,7 +35,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return data
 
 				} catch (error) {
-					console.error.log(error)
+					console.log(error)
+				}
+			},
+
+			login: async(email, pwd)=>{
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + "/api/login", {
+						method: "POST",
+						headers: {"Content-Type": "application/json"},
+						body: JSON.stringify({"email": email, "password": pwd})
+					})
+					if(!resp.ok) throw Error('There was a problem verifying your credentials')
+					const data = await resp.json()
+					localStorage.setItem('jwt-token', data.token)
+					setStore({
+						user: data.user
+					})
+					return data
+				} catch (error) {
+					console.log(error)
 				}
 			},
 

@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useContext} from "react";
+import { Context } from "../store/appContext";
 
 export const Protected = ()=>{
-    return <h1>This is the a protected view</h1>
+    const {store} = useContext(Context)
+    return <h1>{`Welcome ${store.user.name} you can see this page because you logged in!`}</h1>
 }
