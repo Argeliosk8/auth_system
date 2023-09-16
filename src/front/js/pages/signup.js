@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { Context } from "../store/appContext";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -13,7 +13,7 @@ export const Signup = ()=>{
     const [is_signedup, setIs_signedup] = useState()
     const {actions} = useContext(Context)
     const navigate = useNavigate()
-
+    
     const openModal = ()=>{setShow(true)}
     const closeModal = ()=>{setShow(false)}
 
@@ -89,12 +89,6 @@ export const Signup = ()=>{
             </div>
             <div class="input-group mb-3 justify-content-center">
                 {pwd && name && email && pwd == pwd2 ? <button onClick={signupClick} type="button" class="btn btn-primary" >Submit</button> : <button onClick={signupClick} type="button" class="btn btn-primary" disabled >Submit</button>}
-            </div>
-            <div class="input-group mb-3 justify-content-center">
-                <p>{`${name}`}</p><br/>
-                <p>{`${email}`}</p><br/>
-                <p>{`${pwd}`}</p><br/>
-                <p>{`${pwd2}`}</p>    
             </div>
         </div>
     </div>

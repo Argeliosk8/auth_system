@@ -58,6 +58,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			logout: ()=>{
+				localStorage.removeItem("jwt-token")
+				setStore({
+					user: null
+				})
+			},
+
 			getMessage: async () => {
 				try{
 					// fetching data from the backend

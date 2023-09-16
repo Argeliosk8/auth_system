@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
@@ -68,10 +68,6 @@ export const Login = ()=>{
                 </div>
                 <div class="input-group mb-3 justify-content-center">
                     <button onClick={handleSubmit} type="button" class="btn btn-primary">Login</button>
-                </div>
-                <div class="input-group mb-3 justify-content-center">
-                    <p>{`${email}`}</p>
-                    <p>{`${password}`}</p>
                 </div>
             </div>
         </div>
